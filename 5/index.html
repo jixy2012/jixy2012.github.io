@@ -1,0 +1,689 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>CS 180 Project 5</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="13a64b13-1131-8046-99c4-d361f4f416d9" class="page sans"><header><h1 class="page-title">CS 180 Project 5</h1><p class="page-description"></p></header><div class="page-body"><h1 id="13a64b13-1131-800a-a5ae-e0ec98d8e065" class="">Part A0: Set Up</h1><p id="13a64b13-1131-809c-b2c0-e5ccb5efbe80" class="">After 20 denoising and 20 upsampling steps, here are the results:</p><div id="13a64b13-1131-80ae-8f28-d97a0f573a0f" class="column-list"><div id="13a64b13-1131-8057-a002-fb4a546fabff" style="width:33.333333333333336%" class="column"><figure id="13a64b13-1131-80ac-9ae1-cf5e122409f3" class="image"><a href="image.png"><img style="width:205.3229217529297px" src="image.png"/></a><figcaption>an oil painting of a snowy mountain village</figcaption></figure></div><div id="13a64b13-1131-8044-b924-d86e771bdc62" style="width:33.333333333333336%" class="column"><figure id="13a64b13-1131-80d0-8739-e454e6ed8e99" class="image"><a href="image%201.png"><img style="width:205.3229217529297px" src="image%201.png"/></a><figcaption>a man wearing a hat</figcaption></figure></div><div id="13a64b13-1131-80fb-8d2c-e1c9bbb09b08" style="width:33.33333333333333%" class="column"><figure id="13a64b13-1131-8080-8441-fec7be7aef48" class="image"><a href="image%202.png"><img style="width:205.3229217529297px" src="image%202.png"/></a><figcaption>a rocket ship</figcaption></figure></div></div><p id="13a64b13-1131-8077-b74b-e6b70e694856" class="">The first image didn’t quite capture the texture of the oil painting. Instead, it looks more like a children’s cartoon. </p><p id="13a64b13-1131-80e5-8dba-cf92e8b74dec" class="">The second image is pretty realistic. It even kept the background void since there’s no descriptions provided in the prompt.</p><p id="13a64b13-1131-808a-9015-f53929175827" class="">The last image also looks cartoony, maybe due to the diction of “rocket ship” appears more frequently in describing cartoons instead of actual spaceships.</p><p id="13a64b13-1131-8034-a3fc-d5c2d4b39efa" class="">
+</p><p id="13a64b13-1131-80bb-92ce-c6f07afedb4d" class="">I experimented with the prompt <strong>”a man wearing a hat”</strong> using 100, 500, and 1000 inference steps.</p><div id="13a64b13-1131-80f1-aed3-ecd6681413b0" class="column-list"><div id="13a64b13-1131-8001-8cb8-dea37a80d891" style="width:33.333333333333336%" class="column"><figure id="13a64b13-1131-8043-894b-ef6ddd878dd5" class="image"><a href="image%203.png"><img style="width:205.3229217529297px" src="image%203.png"/></a><figcaption>100</figcaption></figure></div><div id="13a64b13-1131-80e6-be45-d07481fe4b25" style="width:33.333333333333336%" class="column"><figure id="13a64b13-1131-80f9-90cc-c40bb6294418" class="image"><a href="image%204.png"><img style="width:205.3229217529297px" src="image%204.png"/></a><figcaption>500</figcaption></figure></div><div id="13a64b13-1131-8018-a7f4-fff545338317" style="width:33.33333333333333%" class="column"><figure id="13a64b13-1131-8054-a843-ffba9e4c2e7c" class="image"><a href="image%205.png"><img style="width:205.3229217529297px" src="image%205.png"/></a><figcaption>1000</figcaption></figure></div></div><p id="13a64b13-1131-80a5-8b37-ff9d1a1afa17" class="">Interestingly, the men look different in each of the images. For the 1000 steps output, we are seeing an outdoors background, as opposed to the previous attemps that kep the background a solid color. I also observe a strange halo around the person for the 100 and 500 steps outputs.</p><h1 id="13a64b13-1131-8032-9488-e6bbcfb114cd" class="">Part A1: Sampling Loops</h1><h2 id="13a64b13-1131-80e9-930d-c9611453d99f" class="">1.1: Implementing the forward pass</h2><p id="13a64b13-1131-8086-82cf-cc16a7a6dd78" class="">noised images at different noise levels:</p><div id="13a64b13-1131-8040-a24f-d2f636fab446" class="column-list"><div id="13a64b13-1131-802a-9712-dfbd1930b5f9" style="width:37.03703703703703%" class="column"><figure id="13a64b13-1131-80ab-bc6c-dd8addc4c46b" class="image"><a href="image%206.png"><img style="width:144px" src="image%206.png"/></a><figcaption>250</figcaption></figure></div><div id="13a64b13-1131-8076-bec4-ef263a003ee6" style="width:33.33333333333333%" class="column"><figure id="13a64b13-1131-8099-8b32-fcfd2ce3ab33" class="image"><a href="image%207.png"><img style="width:144px" src="image%207.png"/></a><figcaption>500</figcaption></figure></div><div id="13a64b13-1131-8012-ae10-d3c8c16712b2" style="width:29.629629629629633%" class="column"><figure id="13a64b13-1131-80c7-8f83-f0864ae6fbba" class="image"><a href="image%208.png"><img style="width:144px" src="image%208.png"/></a><figcaption>750</figcaption></figure></div></div><h2 id="13a64b13-1131-800d-a982-d101ad1b260f" class="">1.2: Classical Denoising</h2><p id="13a64b13-1131-8098-800b-e8ecbd4f1bd7" class="">Using the gaussian blur denoising method, I got the following results:</p><div id="13a64b13-1131-80aa-9c4d-c4e124c7ff03" class="column-list"><div id="13a64b13-1131-8019-a310-f9b0a0155ce5" style="width:33.333333333333336%" class="column"><figure id="13a64b13-1131-802b-a6c9-c390ec0c98eb" class="image"><a href="image%209.png"><img style="width:144px" src="image%209.png"/></a><figcaption>250</figcaption></figure></div><div id="13a64b13-1131-808a-b794-f9f5e721016b" style="width:33.333333333333336%" class="column"><figure id="13a64b13-1131-80df-8ef8-f643224c0e03" class="image"><a href="image%2010.png"><img style="width:144px" src="image%2010.png"/></a><figcaption>500</figcaption></figure></div><div id="13a64b13-1131-8078-8c58-f3225617f5cc" style="width:33.33333333333333%" class="column"><figure id="13a64b13-1131-8005-8b8b-ea79f01a14fa" class="image"><a href="image%2011.png"><img style="width:144px" src="image%2011.png"/></a><figcaption>750</figcaption></figure></div></div><p id="13a64b13-1131-8066-a2cf-dfc7cfb8fee2" class="">These just look like the blurry version of the noisy images.</p><h2 id="13a64b13-1131-80a7-b560-dbbbe5a8f6a1" class="">1.3: <strong>Implementing One Step Denoising</strong></h2><p id="13a64b13-1131-80ae-b2e7-d8f2d6cea6e1" class="">Using the noise estimate from the unet, here are the denoised results of the 3 timesteps:</p><div id="13a64b13-1131-8065-99cb-e339902f4f70" class="column-list"><div id="13a64b13-1131-80bf-923e-e0b0b9ffc320" style="width:33.333333333333336%" class="column"><figure id="13a64b13-1131-80e0-a32d-ec55517ead90" class="image"><a href="image%2012.png"><img style="width:144px" src="image%2012.png"/></a><figcaption>t=250</figcaption></figure></div><div id="13a64b13-1131-808a-97c3-ec85b25e19f1" style="width:33.333333333333336%" class="column"><figure id="13a64b13-1131-804a-9fb1-ebf178ee29fb" class="image"><a href="image%2013.png"><img style="width:144px" src="image%2013.png"/></a><figcaption>t=500</figcaption></figure></div><div id="13a64b13-1131-800b-a1b5-e64d4a6b8138" style="width:33.33333333333333%" class="column"><figure id="13a64b13-1131-8043-b740-e5d565b94b3f" class="image"><a href="image%2014.png"><img style="width:144px" src="image%2014.png"/></a><figcaption>t=750</figcaption></figure></div></div><p id="13a64b13-1131-80c5-8db9-eaa695754ea9" class="">The denoised results at t=250 looks the best, presumably since it’s closer to the original image compared to the other two. On the other end of the spectrum, t=750 the denoised results still look quite blurry, and doesn’t look like the campanile much.</p><p id="13a64b13-1131-80d0-89a5-e39eab9c74af" class="">
+</p><h2 id="13a64b13-1131-80e0-b329-c2d2572939a0" class="">1.4: <strong>Implementing Iterative Denoising</strong></h2><p id="13a64b13-1131-805f-98b9-cd395e9093c4" class="">Here are the steps for the iterative denoising steps:</p><div id="13a64b13-1131-80ea-9180-cdeb0158854d" class="column-list"><div id="13a64b13-1131-8082-bb5a-d11d4d197111" style="width:33.33333333333333%" class="column"><figure id="13a64b13-1131-8049-8438-e470ae9cee54" class="image"><a href="image%2015.png"><img style="width:144px" src="image%2015.png"/></a><figcaption>t=690</figcaption></figure></div><div id="13a64b13-1131-80fd-8679-ed4dd7a3c378" style="width:33.33333333333333%" class="column"><figure id="13a64b13-1131-8040-b616-efa97246b2d8" class="image"><a href="image%2016.png"><img style="width:144px" src="image%2016.png"/></a><figcaption>t=540</figcaption></figure></div><div id="13a64b13-1131-801e-9746-fe1e2accefd6" style="width:33.33333333333333%" class="column"><figure id="13a64b13-1131-8037-ab19-d2fb8d74f412" class="image"><a href="image%2017.png"><img style="width:144px" src="image%2017.png"/></a><figcaption>t=390</figcaption></figure></div></div><div id="13a64b13-1131-806b-824d-d797a00588aa" class="column-list"><div id="13a64b13-1131-804d-8a5e-d65ab1ca8abd" style="width:33.333333333333336%" class="column"><figure id="13a64b13-1131-8051-9401-c15dfa433823" class="image"><a href="image%2018.png"><img style="width:144px" src="image%2018.png"/></a><figcaption>t=240</figcaption></figure></div><div id="13a64b13-1131-80a5-89d7-e82e5936695d" style="width:33.333333333333336%" class="column"><figure id="13a64b13-1131-807c-829a-cacffcf95ad6" class="image"><a href="image%2019.png"><img style="width:144px" src="image%2019.png"/></a><figcaption>t=90</figcaption></figure></div><div id="13a64b13-1131-80cc-9f53-ebd8453fc99a" style="width:33.33333333333333%" class="column"><figure id="13a64b13-1131-8069-9295-c8e190b3e108" class="image"><a href="image%2020.png"><img style="width:144px" src="image%2020.png"/></a><figcaption>final image</figcaption></figure></div></div><p id="13a64b13-1131-80e6-ae4d-d5e2b37a5b55" class="">Compared to the previous methods:</p><div id="13a64b13-1131-80ff-bf14-feb570ce900c" class="column-list"><div id="13a64b13-1131-809b-a775-d4f7f3d30853" style="width:50%" class="column"><figure id="13a64b13-1131-80d5-aadb-ec66fc51df1d" class="image"><a href="image%2021.png"><img style="width:192px" src="image%2021.png"/></a><figcaption>one step estimation</figcaption></figure></div><div id="13a64b13-1131-802c-871a-d51476d36e7a" style="width:50%" class="column"><figure id="13a64b13-1131-8069-97d7-f5c8a17add0c" class="image"><a href="image%2022.png"><img style="width:192px" src="image%2022.png"/></a><figcaption>gaussian blur</figcaption></figure></div></div><h2 id="13b64b13-1131-80f8-ad5b-fb56238428d3" class="">1.5 Diffusion Model Sampling</h2><h2 id="13b64b13-1131-80b6-bf5b-de465b1cb353" class="">1.6 Classifer-Free Guidance</h2><p id="13b64b13-1131-80b0-abbc-c0db01b98129" class="">Now the generations look much nicer! Here are the results:</p><div id="13b64b13-1131-8024-9591-eb4991d14541" class="column-list"><div id="13b64b13-1131-80de-82ec-fc9378b0bdee" style="width:33.333333333333336%" class="column"><figure id="13b64b13-1131-8070-8282-e474fe53f726" class="image"><a href="image%2023.png"><img style="width:144px" src="image%2023.png"/></a></figure></div><div id="13b64b13-1131-807a-9afb-eb4eab66a344" style="width:33.333333333333336%" class="column"><figure id="13b64b13-1131-80d9-b4ec-cb0834e76dbe" class="image"><a href="image%2024.png"><img style="width:144px" src="image%2024.png"/></a></figure></div><div id="13b64b13-1131-809e-8aae-f46f9f8ba677" style="width:33.33333333333333%" class="column"><figure id="13b64b13-1131-8010-b78e-e0c0b385bc05" class="image"><a href="image%2025.png"><img style="width:144px" src="image%2025.png"/></a></figure></div></div><div id="13b64b13-1131-8085-8de2-e095a709ac71" class="column-list"><div id="13b64b13-1131-8058-a605-e3c4233126d9" style="width:50%" class="column"><figure id="13b64b13-1131-8049-a827-d9c81da8090d" class="image"><a href="image%2026.png"><img style="width:144px" src="image%2026.png"/></a></figure></div><div id="13b64b13-1131-80c2-b0cc-e971ee802894" style="width:50%" class="column"><figure id="13b64b13-1131-80dc-bc8b-d84e95ac5516" class="image"><a href="image%2027.png"><img style="width:144px" src="image%2027.png"/></a></figure></div></div><h2 id="13b64b13-1131-8005-ad83-ec03f36c006a" class="">1.7 Image-to-image Translation</h2><h3 id="13b64b13-1131-804a-a797-fd7ef62a4f45" class="">test_im</h3><p id="13b64b13-1131-80c0-a1cb-d5b830384df7" class="">Here are the results from running the <code>iterative_denoise_cfg</code> on the <code>test_im</code><br/><br/></p><div id="13b64b13-1131-80e4-97f7-e4730b8c8ac1" class="column-list"><div id="13b64b13-1131-8044-885b-d40f90c79e6a" style="width:33.333333333333336%" class="column"><figure id="13b64b13-1131-8049-9b82-c3f56e01f17c" class="image"><a href="image%2028.png"><img style="width:144px" src="image%2028.png"/></a><figcaption>starting index=1</figcaption></figure></div><div id="13b64b13-1131-807c-868a-f05fb302a62a" style="width:33.333333333333336%" class="column"><figure id="13b64b13-1131-80da-9a8a-cddd61156415" class="image"><a href="image%2029.png"><img style="width:144px" src="image%2029.png"/></a><figcaption>starting index=3</figcaption></figure><p id="13b64b13-1131-8054-9bc5-d061ccadbb39" class="">
+</p></div><div id="13b64b13-1131-80e4-a974-fb2dcf25aca6" style="width:33.33333333333333%" class="column"><figure id="13b64b13-1131-80df-8e89-dc786524ac7f" class="image"><a href="image%2030.png"><img style="width:144px" src="image%2030.png"/></a><figcaption>starting index=5</figcaption></figure></div></div><div id="13b64b13-1131-80f0-8a4d-c45c99839ccb" class="column-list"><div id="13b64b13-1131-801c-8518-e51e0b27f2e4" style="width:33.333333333333336%" class="column"><figure id="13b64b13-1131-80f6-a2e6-e6ac7a0c854d" class="image"><a href="image%2031.png"><img style="width:144px" src="image%2031.png"/></a><figcaption>starting index=7</figcaption></figure></div><div id="13b64b13-1131-80d9-a510-e4cdd8628b8c" style="width:33.333333333333336%" class="column"><figure id="13b64b13-1131-804b-9f21-d4876baa4946" class="image"><a href="image%2032.png"><img style="width:144px" src="image%2032.png"/></a><figcaption>starting index=10</figcaption></figure></div><div id="13b64b13-1131-8089-92da-f0d80665204b" style="width:33.33333333333333%" class="column"><figure id="13b64b13-1131-802b-9bb7-f76024566867" class="image"><a href="image%2033.png"><img style="width:144px" src="image%2033.png"/></a><figcaption>starting index=20</figcaption></figure></div></div><h3 id="13b64b13-1131-803e-bcab-c31d909624d6" class="">Buddist Temple</h3><p id="13b64b13-1131-8090-acd5-e063bdde10a1" class="">Here’s the other image I tested on (original):</p><figure id="13b64b13-1131-806f-be05-ea1db97a3960" class="image"><a href="IMG_20240818_095505.jpg"><img style="width:192px" src="IMG_20240818_095505.jpg"/></a><figcaption>Tibetan Buddist Temple found in Gansu province</figcaption></figure><p id="13b64b13-1131-8058-a3c4-cfd5611651a9" class="">Results:</p><div id="13b64b13-1131-8089-9f32-d219679021d9" class="column-list"><div id="13b64b13-1131-8020-872c-f121a5a69655" style="width:33.333333333333336%" class="column"><figure id="13b64b13-1131-80a2-9519-f4b9d1994e86" class="image"><a href="image%2034.png"><img style="width:192px" src="image%2034.png"/></a><figcaption>starting index=1</figcaption></figure></div><div id="13b64b13-1131-8007-8326-fe1684d5683a" style="width:33.333333333333336%" class="column"><figure id="13b64b13-1131-8045-8c4b-f7de2d0fbf26" class="image"><a href="image%2035.png"><img style="width:192px" src="image%2035.png"/></a><figcaption>starting index=3</figcaption></figure></div><div id="13b64b13-1131-8059-a1e5-f2341816f556" style="width:33.33333333333333%" class="column"><figure id="13b64b13-1131-80b0-8c08-eacdba6fbb3d" class="image"><a href="image%2036.png"><img style="width:192px" src="image%2036.png"/></a><figcaption>starting index=5</figcaption></figure></div></div><div id="13b64b13-1131-80e6-8255-fc3de7f17c10" class="column-list"><div id="13b64b13-1131-8098-92e1-c44225699d7e" style="width:33.333333333333336%" class="column"><figure id="13b64b13-1131-80f6-9b20-f05506c28966" class="image"><a href="image%2037.png"><img style="width:192px" src="image%2037.png"/></a><figcaption>starting index=7</figcaption></figure></div><div id="13b64b13-1131-80be-adb0-fdf71b33fdf6" style="width:33.333333333333336%" class="column"><figure id="13b64b13-1131-8007-afad-c3c35c5c3793" class="image"><a href="image%2038.png"><img style="width:240px" src="image%2038.png"/></a><figcaption>starting index=10</figcaption></figure></div><div id="13b64b13-1131-80e9-bf9c-daac2fb0db0d" style="width:33.33333333333333%" class="column"><figure id="13b64b13-1131-805c-9b45-dc92abd6ffc7" class="image"><a href="image%2039.png"><img style="width:240px" src="image%2039.png"/></a><figcaption>starting index=20</figcaption></figure></div></div><h3 id="13b64b13-1131-8075-90fd-c83ef0a0f317" class="">Cow</h3><p id="13b64b13-1131-8095-acdc-f1fb48fdff3d" class="">Original image:</p><figure id="13b64b13-1131-8060-be12-fdccd9638328" class="image"><a href="wx_camera_1721471016473.jpg"><img style="width:288px" src="wx_camera_1721471016473.jpg"/></a></figure><p id="13b64b13-1131-809f-9582-cee18c475dcb" class="">Results:</p><div id="13b64b13-1131-8091-b8e9-eaf2642e70b2" class="column-list"><div id="13b64b13-1131-80bd-8533-f30bc00d0e62" style="width:33.333333333333336%" class="column"><figure id="13b64b13-1131-8047-ab83-df469a9c41da" class="image"><a href="image%2040.png"><img style="width:192px" src="image%2040.png"/></a><figcaption>starting index=1</figcaption></figure></div><div id="13b64b13-1131-8028-bc1e-df5bdeb7fd1f" style="width:33.333333333333336%" class="column"><figure id="13b64b13-1131-80eb-8306-e0cdc97a45b0" class="image"><a href="image%2041.png"><img style="width:240px" src="image%2041.png"/></a><figcaption>starting index=3</figcaption></figure></div><div id="13b64b13-1131-80e7-8fc5-c5290560cb65" style="width:33.33333333333333%" class="column"><figure id="13b64b13-1131-8042-8ba3-e47358c1499d" class="image"><a href="image%2042.png"><img style="width:192px" src="image%2042.png"/></a><figcaption>starting index=5</figcaption></figure></div></div><div id="13b64b13-1131-80aa-bc8a-e78126e0252b" class="column-list"><div id="13b64b13-1131-80c7-8ba9-c3e73dd0bd01" style="width:33.33333333333333%" class="column"><figure id="13b64b13-1131-80af-872f-c03ace56e98e" class="image"><a href="image%2043.png"><img style="width:240px" src="image%2043.png"/></a><figcaption>starting index=7</figcaption></figure></div><div id="13b64b13-1131-80c3-9ce5-c2a50ce993e1" style="width:33.33333333333333%" class="column"><figure id="13b64b13-1131-803d-afc6-d443999ac2ad" class="image"><a href="image%2044.png"><img style="width:288px" src="image%2044.png"/></a><figcaption>starting index=10</figcaption></figure></div><div id="13b64b13-1131-80ba-9542-ed7d47b0c6c0" style="width:33.33333333333333%" class="column"><figure id="13b64b13-1131-80f5-b622-d787d3bc9979" class="image"><a href="image%2045.png"><img style="width:240px" src="image%2045.png"/></a><figcaption>starting index=20</figcaption></figure></div></div><p id="13b64b13-1131-807b-87f4-ceb171dc8545" class="">Interesting regress at starting index 7, after starting index 5 where the center shape looking much more like the original cow .</p><h2 id="13b64b13-1131-80b5-9da4-c1a6dacce290" class="">1.7.1: Editing Hand-Drawn Images</h2><p id="13b64b13-1131-8098-b816-ce4ae7a7c69f" class="">For the Avocado:</p><p id="13b64b13-1131-8030-a46e-df3985509c45" class="">Original:</p><figure id="13b64b13-1131-80a5-9292-c4fcc309b30a" class="image"><a href="image%2046.png"><img style="width:144px" src="image%2046.png"/></a></figure><p id="13b64b13-1131-8019-bc7f-e7b7e797c4af" class="">Edited:</p><div id="13b64b13-1131-8027-89ed-c119477c155a" class="column-list"><div id="13b64b13-1131-80a4-ad2b-d9c430b3bba9" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-8019-a2ab-d0dad2e3b2a9" class="image"><a href="image%2047.png"><img style="width:120px" src="image%2047.png"/></a><figcaption>1</figcaption></figure></div><div id="13b64b13-1131-809d-99ca-ef67c02b6431" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-8052-95bd-d266d21e5bca" class="image"><a href="image%2048.png"><img style="width:192px" src="image%2048.png"/></a><figcaption>3</figcaption></figure></div><div id="13b64b13-1131-809f-a692-f23b1c4c7ca6" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-80b9-91bd-e138e3e82ecf" class="image"><a href="image%2049.png"><img style="width:192px" src="image%2049.png"/></a><figcaption>5</figcaption></figure></div><div id="13b64b13-1131-800f-83fa-f8cec4ea3beb" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-80da-94a5-f8aee0575fd3" class="image"><a href="image%2050.png"><img style="width:192px" src="image%2050.png"/></a><figcaption>7</figcaption></figure></div><div id="13b64b13-1131-8037-ad58-dbaf52bc87cb" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-802b-b17e-d4e6fc43f77f" class="image"><a href="image%2051.png"><img style="width:192px" src="image%2051.png"/></a><figcaption>10</figcaption></figure></div><div id="13b64b13-1131-8085-a6dc-c15513207cea" style="width:16.666666666666664%" class="column"><figure id="13b64b13-1131-8062-a85b-fce62fa099ae" class="image"><a href="image%2052.png"><img style="width:108px" src="image%2052.png"/></a><figcaption>20</figcaption></figure></div></div><p id="13b64b13-1131-80e7-999c-f626cb652a1e" class="">Hand drawn 1:</p><figure id="13b64b13-1131-800d-83bb-f76479ca31c6" class="image"><a href="image%2053.png"><img style="width:192px" src="image%2053.png"/></a></figure><p id="13b64b13-1131-80ef-a714-f2c193f93291" class="">Edited:</p><div id="13b64b13-1131-802b-beae-f71ce2ded10d" class="column-list"><div id="13b64b13-1131-8030-b9fc-ddbda858f566" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-8008-9a92-dc541228f5e1" class="image"><a href="image%2054.png"><img style="width:96px" src="image%2054.png"/></a><figcaption>1</figcaption></figure></div><div id="13b64b13-1131-80c8-867b-d952e429fc3c" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-8069-aa3e-f3c07a0d3a75" class="image"><a href="image%2055.png"><img style="width:108px" src="image%2055.png"/></a><figcaption>3</figcaption></figure></div><div id="13b64b13-1131-8074-922b-fd965f43e902" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-80d2-9f51-cd6d9560ec19" class="image"><a href="image%2056.png"><img style="width:120px" src="image%2056.png"/></a><figcaption>5</figcaption></figure></div><div id="13b64b13-1131-8067-9376-f42072a64bac" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-80eb-8f3d-f006c001208c" class="image"><a href="image%2057.png"><img style="width:120px" src="image%2057.png"/></a><figcaption>7</figcaption></figure></div><div id="13b64b13-1131-80f5-9190-f4531a2271bd" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-8057-8c80-f8a0fcfb1262" class="image"><a href="image%2058.png"><img style="width:108px" src="image%2058.png"/></a><figcaption>10</figcaption></figure></div><div id="13b64b13-1131-805a-a60b-d8b7d2077325" style="width:16.666666666666664%" class="column"><figure id="13b64b13-1131-809d-8b54-f78fb9b76775" class="image"><a href="image%2059.png"><img style="width:132px" src="image%2059.png"/></a><figcaption>20</figcaption></figure></div></div><p id="13b64b13-1131-8074-ad05-e5f7e9354b02" class="">Hand drawn 2:</p><figure id="13b64b13-1131-802f-8022-c24b0bcd98f8" class="image"><a href="image%2060.png"><img style="width:144px" src="image%2060.png"/></a></figure><p id="13b64b13-1131-80a7-897e-d292c55263d3" class="">Edited:</p><div id="13b64b13-1131-8000-b363-fea007bbafcb" class="column-list"><div id="13b64b13-1131-8074-a893-c930254a27de" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-80a7-879e-fca1ca174d2c" class="image"><a href="image%2061.png"><img style="width:96px" src="image%2061.png"/></a><figcaption>1</figcaption></figure></div><div id="13b64b13-1131-80ae-8598-e9b9c38c16b2" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-80b7-831a-de6189c3558c" class="image"><a href="image%2062.png"><img style="width:108px" src="image%2062.png"/></a><figcaption>3</figcaption></figure></div><div id="13b64b13-1131-80e9-9919-d4a133787019" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-807a-8aa9-f6a31c62f012" class="image"><a href="image%2063.png"><img style="width:120px" src="image%2063.png"/></a><figcaption>5</figcaption></figure></div><div id="13b64b13-1131-809d-8730-ed6875ddfa7d" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-80a3-b6b1-d07e0cdb3e03" class="image"><a href="image%2064.png"><img style="width:96px" src="image%2064.png"/></a><figcaption>7</figcaption></figure></div><div id="13b64b13-1131-80fa-83ec-e045a6777e33" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-805c-b12c-e0b0b7bbcc07" class="image"><a href="image%2065.png"><img style="width:96px" src="image%2065.png"/></a><figcaption>10</figcaption></figure></div><div id="13b64b13-1131-80d4-852b-c952da9c7323" style="width:16.666666666666664%" class="column"><figure id="13b64b13-1131-80fb-83c6-c528b7b572e4" class="image"><a href="image%2066.png"><img style="width:108px" src="image%2066.png"/></a><figcaption>20</figcaption></figure></div></div><p id="13b64b13-1131-80af-b97b-db4dccf19a1f" class="">Interesting regress at start index=7, but pretty “creative”.</p><h2 id="13b64b13-1131-805f-a24f-c3270051d96b" class="">1.7.2: Inpainting</h2><p id="13b64b13-1131-8060-8b75-dc7aae50763a" class="">Test image:</p><div id="13b64b13-1131-8019-a342-dfc596bcdb6b" class="column-list"><div id="13b64b13-1131-8090-9016-df4f5834213c" style="width:25%" class="column"><figure id="13b64b13-1131-802b-b96c-ce13f86e9ab0" class="image"><a href="image%2067.png"><img style="width:144px" src="image%2067.png"/></a><figcaption>Image</figcaption></figure></div><div id="13b64b13-1131-8048-b1c3-c27bccb67b15" style="width:25%" class="column"><figure id="13b64b13-1131-8027-a951-c0b693ca41eb" class="image"><a href="image%2068.png"><img style="width:144px" src="image%2068.png"/></a><figcaption>Mask</figcaption></figure></div><div id="13b64b13-1131-80dd-8d3b-d1000d45fdbf" style="width:25%" class="column"><figure id="13b64b13-1131-800d-bfd7-eec7bae4bc97" class="image"><a href="image%2069.png"><img style="width:132px" src="image%2069.png"/></a><figcaption>To Replace</figcaption></figure></div><div id="13b64b13-1131-80d6-bf10-efa2332b9bae" style="width:25%" class="column"><figure id="13b64b13-1131-80f0-87c2-dedac505690a" class="image"><a href="image%2070.png"><img style="width:144px" src="image%2070.png"/></a><figcaption>results</figcaption></figure></div></div><p id="13b64b13-1131-80a4-9bb9-fe45261fbe01" class="">Temple:</p><div id="13b64b13-1131-8070-b422-ed8b924bdd2a" class="column-list"><div id="13b64b13-1131-80b0-90e8-d4cb8815449d" style="width:25%" class="column"><figure id="13b64b13-1131-8045-bf24-c7d642eff5e0" class="image"><a href="image%2071.png"><img style="width:144px" src="image%2071.png"/></a><figcaption>Image</figcaption></figure></div><div id="13b64b13-1131-80d1-ad71-cdedf53886f3" style="width:25%" class="column"><figure id="13b64b13-1131-8090-bd86-dfd8bdb40c73" class="image"><a href="image%2072.png"><img style="width:192px" src="image%2072.png"/></a><figcaption>Temple Mask</figcaption></figure></div><div id="13b64b13-1131-80ce-9125-f9fa5c65102d" style="width:25%" class="column"><figure id="13b64b13-1131-80e8-a903-edcbd759727c" class="image"><a href="image%2073.png"><img style="width:192px" src="image%2073.png"/></a><figcaption>To Replace</figcaption></figure></div><div id="13b64b13-1131-801e-8905-da417c993894" style="width:25%" class="column"><figure id="13b64b13-1131-80b9-81af-f671fb48856c" class="image"><a href="image%2074.png"><img style="width:192px" src="image%2074.png"/></a><figcaption>results</figcaption></figure></div></div><p id="13b64b13-1131-80ab-9dbd-fe7cec3eac65" class="">Cow:</p><div id="13b64b13-1131-80ef-add3-e186a3d73b18" class="column-list"><div id="13b64b13-1131-8026-85a6-ea989bc9c5b0" style="width:25%" class="column"><figure id="13b64b13-1131-800f-ae4b-cd536767414c" class="image"><a href="image%2075.png"><img style="width:144px" src="image%2075.png"/></a><figcaption>Image</figcaption></figure></div><div id="13b64b13-1131-802f-9381-f1b241046f88" style="width:25%" class="column"><figure id="13b64b13-1131-8020-8f93-d7a3aee455d7" class="image"><a href="image%2076.png"><img style="width:192px" src="image%2076.png"/></a><figcaption>Cow Mask</figcaption></figure></div><div id="13b64b13-1131-8025-8beb-eea7a0479e0a" style="width:25%" class="column"><figure id="13b64b13-1131-809c-8b7c-f7d025cc61d7" class="image"><a href="image%2077.png"><img style="width:132px" src="image%2077.png"/></a><figcaption>To Replace</figcaption></figure></div><div id="13b64b13-1131-8091-adbf-fc6e191aac9f" style="width:25%" class="column"><figure id="13b64b13-1131-80d8-bad9-d1e6b911b9b8" class="image"><a href="image%2078.png"><img style="width:144px" src="image%2078.png"/></a><figcaption>results</figcaption></figure></div></div><h2 id="13b64b13-1131-80ad-a1a9-e70f93888124" class=""><strong>1.7.3 Text-Conditioned Image-to-image Translation</strong></h2><div id="13b64b13-1131-8097-9404-f758e2a4ddaf" class="column-list"><div id="13b64b13-1131-803a-803e-da44d05a28f5" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-8016-8c1c-ecdfed587d95" class="image"><a href="image%2079.png"><img style="width:108px" src="image%2079.png"/></a></figure></div><div id="13b64b13-1131-8073-b2f1-dbe6f9ca719c" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-809a-8c1b-cd63cf6c4c84" class="image"><a href="image%2080.png"><img style="width:144px" src="image%2080.png"/></a></figure></div><div id="13b64b13-1131-8057-bd15-c49ed8534dcd" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-801b-8d4d-c84c0d0e3378" class="image"><a href="image%2081.png"><img style="width:144px" src="image%2081.png"/></a></figure></div><div id="13b64b13-1131-80ce-8bcb-fbb16829dcc0" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-8029-a230-ecf2b3550d7c" class="image"><a href="image%2082.png"><img style="width:192px" src="image%2082.png"/></a></figure></div><div id="13b64b13-1131-8009-8abc-f8d2a7791c65" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-8027-a5da-fe1fd738b72e" class="image"><a href="image%2083.png"><img style="width:192px" src="image%2083.png"/></a></figure></div><div id="13b64b13-1131-805e-b1e3-e7025ef45721" style="width:16.666666666666664%" class="column"><figure id="13b64b13-1131-80fc-9da4-c221015f387c" class="image"><a href="image%2084.png"><img style="width:192px" src="image%2084.png"/></a></figure></div></div><p id="13b64b13-1131-80a4-862e-e6d5047d93b7" class="">For my own images, I’m using the cow with 2 different prompts</p><p id="13b64b13-1131-807d-a68f-e47ab4791f32" class="">Prompt: a photo of a dog</p><div id="13b64b13-1131-80ee-aa6c-dba8e0e5983a" class="column-list"><div id="13b64b13-1131-802c-9de4-ffbd52704dfb" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-8044-9330-ea162b195256" class="image"><a href="image%2085.png"><img style="width:108px" src="image%2085.png"/></a></figure></div><div id="13b64b13-1131-8079-b11b-cbdfd8b0f337" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-8006-a746-f52b879435f0" class="image"><a href="image%2086.png"><img style="width:132px" src="image%2086.png"/></a></figure></div><div id="13b64b13-1131-802e-96b4-f36c94b7dfc8" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-801d-8405-c0c9479d3b33" class="image"><a href="image%2087.png"><img style="width:144px" src="image%2087.png"/></a></figure></div><div id="13b64b13-1131-802a-884c-f9b7d1f0cb3a" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-8039-8d38-f27df4ca11b9" class="image"><a href="image%2088.png"><img style="width:144px" src="image%2088.png"/></a></figure></div><div id="13b64b13-1131-80ac-a0fc-c4e0d005fea0" style="width:16.666666666666668%" class="column"><figure id="13b64b13-1131-80dc-ab65-d51415d6a9d6" class="image"><a href="image%2089.png"><img style="width:144px" src="image%2089.png"/></a></figure></div><div id="13b64b13-1131-80b0-959b-e7c5ad410a51" style="width:16.666666666666664%" class="column"><figure id="13b64b13-1131-8018-9c04-f86da8a21f7b" class="image"><a href="image%2090.png"><img style="width:240px" src="image%2090.png"/></a></figure></div></div><div id="13b64b13-1131-80e0-b9fe-e4d55437fbed" class="column-list"><div id="13b64b13-1131-80b6-ad24-e9169cbaf86d" style="width:50%" class="column"><figure id="13b64b13-1131-8082-8d9f-eb9b75bcfd1f" class="image"><a href="image%2090.png"><img style="width:240px" src="image%2090.png"/></a><figcaption>start index=20</figcaption></figure></div><div id="13b64b13-1131-8013-a446-c2e5b161d494" style="width:50%" class="column"><figure id="13b64b13-1131-801a-8086-d4b0d5898f71" class="image"><a href="image%2075.png"><img style="width:240px" src="image%2075.png"/></a><figcaption>original Image</figcaption></figure></div></div><p id="13b64b13-1131-8094-872a-d338663c3836" class="">The composition of this last image really closely resembles that of the original cow! So it seems you don’t need that many time steps of noise if you want the composition to remain similar</p><p id="13b64b13-1131-8012-8ff7-f161920d0a4a" class="">
+</p><p id="13b64b13-1131-807a-b95a-c4aa1a733b7d" class="">Prompt: a lithograph of a skull</p><div id="13b64b13-1131-80fa-a6e7-ec1bf94fe9c0" class="column-list"><div id="13b64b13-1131-804a-af27-ff5c75ed148c" style="width:16.66666666666667%" class="column"><figure id="13b64b13-1131-80a2-afbb-ca25e9181fa9" class="image"><a href="image%2091.png"><img style="width:144px" src="image%2091.png"/></a></figure></div><div id="13b64b13-1131-8038-aae9-e322373d0f25" style="width:16.666666666666664%" class="column"><figure id="13b64b13-1131-8007-8787-c9cfe252c9dd" class="image"><a href="image%2092.png"><img style="width:108px" src="image%2092.png"/></a></figure></div><div id="13b64b13-1131-80dd-b105-fb3702b82cf0" style="width:16.66666666666667%" class="column"><figure id="13b64b13-1131-8065-88e9-dac8d505dc61" class="image"><a href="image%2093.png"><img style="width:120px" src="image%2093.png"/></a></figure></div><div id="13b64b13-1131-80e2-bdb7-c5fd96740ad1" style="width:16.66666666666667%" class="column"><figure id="13b64b13-1131-8082-b446-d2d530913705" class="image"><a href="image%2094.png"><img style="width:120px" src="image%2094.png"/></a></figure></div><div id="13b64b13-1131-80ae-919f-c6c0c6af8e14" style="width:16.66666666666667%" class="column"><figure id="13b64b13-1131-80f4-be9e-f720eabfc939" class="image"><a href="image%2095.png"><img style="width:144px" src="image%2095.png"/></a></figure></div><div id="13b64b13-1131-8093-826f-c52c86508355" style="width:16.666666666666664%" class="column"><figure id="13b64b13-1131-80b8-9b76-e0312e3abed2" class="image"><a href="image%2096.png"><img style="width:144px" src="image%2096.png"/></a></figure></div></div><div id="13b64b13-1131-80e3-ab5e-f97db1e34c33" class="column-list"><div id="13b64b13-1131-806b-bc7e-d9ca91b5b6ec" style="width:50%" class="column"><figure id="13b64b13-1131-8017-8328-d36717fb99ad" class="image"><a href="image%2097.png"><img style="width:240px" src="image%2097.png"/></a><figcaption>start index=20</figcaption></figure></div><div id="13b64b13-1131-80b6-85ea-dda590c8e6fc" style="width:50%" class="column"><figure id="13b64b13-1131-8087-9596-d6fe73e3e2de" class="image"><a href="image%2075.png"><img style="width:240px" src="image%2075.png"/></a><figcaption>original Image</figcaption></figure></div></div><h2 id="13b64b13-1131-80f2-9c74-ff2b8df0b0ad" class="">1.8: Visual Anagrams</h2><p id="13b64b13-1131-8083-953f-f24e76967199" class="">an oil painting of people around a campfire + an oil painting of an old man</p><div id="13b64b13-1131-804b-a980-f4e569651770" class="column-list"><div id="13b64b13-1131-804d-b312-c68a1e003931" style="width:50%" class="column"><figure id="13b64b13-1131-80e4-b6d4-d2f34c693e2d" class="image"><a href="image%2098.png"><img style="width:240px" src="image%2098.png"/></a></figure></div><div id="13b64b13-1131-80ac-9b0b-d602594e57a9" style="width:50%" class="column"><figure id="13b64b13-1131-80a5-8668-f3d2ba1b0e73" class="image"><a href="image%2099.png"><img style="width:240px" src="image%2099.png"/></a></figure></div></div><p id="13b64b13-1131-8090-947e-ea0202ab1f9f" class="">a photo of the amalfi cost + an oil painting of a snowy mountain village</p><div id="13b64b13-1131-80d7-837d-f98cd6955243" class="column-list"><div id="13b64b13-1131-806e-aa9a-ca03de8b46d8" style="width:50%" class="column"><figure id="13b64b13-1131-80e6-93ca-ee8c57fafd7b" class="image"><a href="image%20100.png"><img style="width:240px" src="image%20100.png"/></a></figure></div><div id="13b64b13-1131-8091-afc5-cda4e72d22ca" style="width:50%" class="column"><figure id="13b64b13-1131-80e1-9fdd-e33e133064b7" class="image"><a href="image%20101.png"><img style="width:240px" src="image%20101.png"/></a></figure></div></div><p id="13b64b13-1131-80bc-8836-f364a980ecb7" class="">a lithograph of a skull + a lithograph of waterfalls</p><div id="13b64b13-1131-80e3-b944-cda38adfc5ee" class="column-list"><div id="13b64b13-1131-800b-8b74-e1df509811e7" style="width:50%" class="column"><figure id="13b64b13-1131-808c-8a4e-ef5be336e4e2" class="image"><a href="image%20102.png"><img style="width:240px" src="image%20102.png"/></a></figure></div><div id="13b64b13-1131-801d-b4a1-c9384dfe0e4f" style="width:50%" class="column"><figure id="13b64b13-1131-808d-a9e9-def645698bc3" class="image"><a href="image%20103.png"><img style="width:240px" src="image%20103.png"/></a></figure></div></div><h2 id="13b64b13-1131-8004-9dc8-dc620e4bfa5d" class="">1.9 Hybrid images</h2><div id="13b64b13-1131-80ad-a079-ed8c7c6604d8" class="column-list"><div id="13b64b13-1131-803c-846f-daf2bc632bf5" style="width:50%" class="column"><p id="13b64b13-1131-8074-86d6-e1c5a6ff5b0e" class="">High pass: an oil painting of people around a campfire</p></div><div id="13b64b13-1131-8067-89bf-fca47c14204c" style="width:50%" class="column"><p id="13b64b13-1131-8066-8e6d-ef4f256f62a8" class="">Low pass: a photo of the amalfi coast</p></div></div><figure id="13b64b13-1131-80b1-9ec4-cdcfd50e8edc" class="image"><a href="image%20104.png"><img style="width:240px" src="image%20104.png"/></a></figure><div id="13b64b13-1131-80aa-9a32-e8f456130887" class="column-list"><div id="7f216883-de14-404b-8233-31586af900c3" style="width:50%" class="column"><p id="2ab98f6e-1d02-47fc-817f-049458bcf30a" class="">High pass: a lithograph of waterfalls</p></div><div id="91f662d0-4140-470e-b67f-c32cac328118" style="width:50%" class="column"><p id="8d3cffdb-9955-47e9-b01c-9907393ca6b8" class="">Low pass: a lithograph of a skull</p></div></div><figure id="13b64b13-1131-80bc-ab34-e4f2fd55546e" class="image"><a href="image%20105.png"><img style="width:240px" src="image%20105.png"/></a></figure><div id="13b64b13-1131-80b2-995e-edc972938c79" class="column-list"><div id="c13bdbbb-b3e1-473d-b8ff-937c96e4a1e6" style="width:50%" class="column"><p id="47d64608-9957-486c-9e2f-1b74de02e9bc" class="">High pass: a pencil</p></div><div id="e44d2469-ca29-4841-8227-cfb629df7342" style="width:50%" class="column"><p id="f832da91-60c8-4f0c-aa02-9f1a0c2e1ef6" class="">Low pass: a rocket ship</p></div></div><figure id="13b64b13-1131-808a-a0ba-ebc38ba668b7" class="image"><a href="image%20106.png"><img style="width:240px" src="image%20106.png"/></a></figure><h1 id="13d64b13-1131-805b-bebc-dafa72c6c741" class="">Part B1: Training a Single-Step Denoising UNet</h1><h2 id="13d64b13-1131-80bd-b5ad-ed88634e093a" class="">1.1 - 1.2 Implementing the Unet &amp; Training a Denoiser</h2><p id="14064b13-1131-809b-a899-eace29995a3a" class="">In order to get noised images, I sample from randn. Here are the noised images:</p><figure id="14064b13-1131-803d-a1ca-e3bfcfd1098b" class="image"><a href="5d6ef23c-ad7d-4a6d-bc6d-d52a37c2ce01.png"><img style="width:432.35732009925556px" src="5d6ef23c-ad7d-4a6d-bc6d-d52a37c2ce01.png"/></a></figure><h3 id="14064b13-1131-801a-9eb8-d78d8f441058" class="">1.2.1 Training</h3><p id="14064b13-1131-80fe-88ed-d8fef0364c3b" class="">Loss graph of training batches:</p><figure id="14064b13-1131-8096-aa60-c82a695fe4c0" class="image"><a href="image%20107.png"><img style="width:707.9750366210938px" src="image%20107.png"/></a></figure><p id="14064b13-1131-80d6-9b17-fc7937570cbd" class="">Some results</p><figure id="14064b13-1131-80fe-98b0-eea8e6ab3034" class="image"><a href="image%20108.png"><img style="width:707.9874877929688px" src="image%20108.png"/></a><figcaption>Original Images</figcaption></figure><figure id="14064b13-1131-80b5-8a0e-ef4fa13a32a4" class="image"><a href="image%20109.png"><img style="width:707.9874877929688px" src="image%20109.png"/></a><figcaption>Noised Images</figcaption></figure><figure id="14064b13-1131-806c-b110-c1a092331379" class="image"><a href="image%20110.png"><img style="width:707.9500122070312px" src="image%20110.png"/></a><figcaption>Results after epoch 1</figcaption></figure><figure id="14064b13-1131-8078-947d-d4067baab0b9" class="image"><a href="image%20111.png"><img style="width:707.9375px" src="image%20111.png"/></a><figcaption>Results after epoch 5</figcaption></figure><h3 id="14064b13-1131-80ea-90e3-d17138011446" class="">1.2.2 Out-of-Distribution Testing</h3><p id="14064b13-1131-8092-b6ec-eaf43f2b7357" class="">here are the results for OOD with different sigmas:</p><figure id="14064b13-1131-80b5-a691-fa4c2fd1970c" class="image"><a href="image%20112.png"><img style="width:707.9874877929688px" src="image%20112.png"/></a></figure><h1 id="14164b13-1131-8050-b70c-fcc0e072edc8" class="">Part B2: </h1><h2 id="14164b13-1131-8013-a39b-e300cd5aa629" class="">2.1 - 3: Time Conditioning to UNet</h2><figure id="14164b13-1131-80a8-a0fd-ea0b87b783d8" class="image"><a href="image%20113.png"><img style="width:707.9750366210938px" src="image%20113.png"/></a><figcaption>Time Conditional Loss</figcaption></figure><figure id="14164b13-1131-8081-a21c-dc122912cfcf" class="image"><a href="image%20114.png"><img style="width:707.9125366210938px" src="image%20114.png"/></a></figure><figure id="14164b13-1131-80e0-a71a-f17cd059941e" class="image"><a href="image%20115.png"><img style="width:707.9874877929688px" src="image%20115.png"/></a></figure><figure id="14164b13-1131-8092-8d93-f38528c05681" class="image"><a href="image%20116.png"><img style="width:1385px" src="image%20116.png"/></a><figcaption>Epoch 5</figcaption></figure><p id="14164b13-1131-80b8-8181-c004e4a3c798" class="">
+</p><figure id="14164b13-1131-80e8-9059-d223f2818fe3" class="image"><a href="image%20117.png"><img style="width:707.9000244140625px" src="image%20117.png"/></a></figure><figure id="14164b13-1131-801b-98b8-d08a6dd0ca61" class="image"><a href="image%20118.png"><img style="width:707.9125366210938px" src="image%20118.png"/></a></figure><figure id="14164b13-1131-80a0-9846-ff25c10a6ed5" class="image"><a href="image%20119.png"><img style="width:707.9874877929688px" src="image%20119.png"/></a><figcaption>Epoch 20</figcaption></figure><h2 id="14164b13-1131-800c-8765-d2654886ac9e" class="">2.4: Add Class Conditioning to UNet</h2><figure id="14164b13-1131-8084-ab83-d4b81a33ae10" class="image"><a href="image%20120.png"><img style="width:707.9750366210938px" src="image%20120.png"/></a><figcaption>Class Conditional Loss</figcaption></figure><figure id="14164b13-1131-809d-a417-e12c23484d61" class="image"><a href="image%20121.png"><img style="width:707.9625244140625px" src="image%20121.png"/></a><figcaption>Epoch 5</figcaption></figure><figure id="14164b13-1131-8098-92e7-d3304b9fd886" class="image"><a href="image%20122.png"><img style="width:707.9625244140625px" src="image%20122.png"/></a><figcaption>Epoch 20</figcaption></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
